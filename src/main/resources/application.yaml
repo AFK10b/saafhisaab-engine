@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: saafhisaab-engine
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/saafhisaab_db
+    username: saafhisaab
+    password: saaf123
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        format_sql: true
