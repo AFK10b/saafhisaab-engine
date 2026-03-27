@@ -16,3 +16,7 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
         format_sql: true
+
+  jwt:
+    secret: saafhisaab-super-secret-key-must-be-32-chars-minimum
+    expiration: 86400000
