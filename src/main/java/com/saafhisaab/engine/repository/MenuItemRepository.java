@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface MenuItemRepository extends JpaRepository<MenuItem, Long> {
-    List<MenuItem> findByVendorIdAndActiveTrue(Long vendorId);
+    List<MenuItem> findByVendor_IdAndActiveTrue(Long vendorId);
 }

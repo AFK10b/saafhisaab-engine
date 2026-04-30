@@ -2,6 +2,8 @@ package com.saafhisaab.engine.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Data
 @Entity
@@ -13,7 +15,8 @@ public class MenuItem {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "vendor_id", nullable = false)
+    @JoinColumn(name = "vendor_id")
+    @JsonIgnore
     private Vendor vendor;
 
     @Column(nullable = false)

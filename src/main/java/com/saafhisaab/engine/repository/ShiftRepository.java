@@ -8,5 +8,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ShiftRepository extends JpaRepository<Shift, Long> {
-    Optional<Shift> findByVendorIdAndStatus(Long vendorId, ShiftStatus status);
+    Optional<Shift> findByVendor_IdAndStatus(Long vendorId, ShiftStatus status);
+    // ↑ underscore tells JPA to traverse the relationship
 }

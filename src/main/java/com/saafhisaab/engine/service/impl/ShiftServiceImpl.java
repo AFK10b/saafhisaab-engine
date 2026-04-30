@@ -14,6 +14,7 @@ import com.saafhisaab.engine.service.ShiftService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -30,7 +31,7 @@ public class ShiftServiceImpl implements ShiftService {
         Vendor vendor = vendorRepository.findById(request.getVendorId())
                 .orElseThrow(() -> new RuntimeException("Vendor not found"));
 
-        shiftRepository.findByVendorIdAndStatus(vendor.getId(), ShiftStatus.OPEN)
+        shiftRepository.findByVendor_IdAndStatus(vendor.getId(), ShiftStatus.OPEN)
                 .ifPresent(s -> { throw new RuntimeException("A shift is already open for this vendor"); });
 
         Shift shift = new Shift();
@@ -43,7 +44,7 @@ public class ShiftServiceImpl implements ShiftService {
         return mapToResponse(shiftRepository.save(shift));
     }
 
-    @Override
+    @Override  // ← add this if missing
     public ShiftResponse closeShift(CloseShiftRequest request, String mobile) {
         User user = userRepository.findByMobile(mobile)
                 .orElseThrow(() -> new RuntimeException("User not found"));
@@ -69,4 +70,16 @@ public class ShiftServiceImpl implements ShiftService {
         res.setStatus(shift.getStatus());
         return res;
     }
+
+    @Override
+    public Optional<ShiftResponse> getActiveShift(Long vendorId) {
+        return shiftRepository.findByVendor_IdAndStatus(vendorId, ShiftStatus.OPEN)
+                .map(shift -> ShiftResponse.builder()
+                        .id(shift.getId())
+                        .openingCash(shift.getOpeningCash())
+                        .status(shift.getStatus())
+                        .build());
+    }
+
+
 }
