@@ -2,7 +2,7 @@
 
 **SaafHisaab** ("Clear Accounts") — A mobile-first Progressive Web App for micro vendors to log daily sales and verify cash reconciliation at the end of every shift.
 
-> This is the **frontend** repository. For the backend API, see [saafhisaab-engine]([../saafhisaab-engine](https://github.com/AFK10b/saafhisaab-engine)).
+> This is the **frontend** repository. For the backend API, see [saafhisaab-engine](https://github.com/AFK10b/saafhisaab-engine).
 
 ---
 
